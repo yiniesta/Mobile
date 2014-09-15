@@ -1,7 +1,0 @@
-{
-    "webBuild": {
-        "environment": "testing",
-        "clean": "on",
-        "publishPath": "E:/Servers/weixin-tomcat/webapps/mobile"
-    }
-}
