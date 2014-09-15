@@ -1,0 +1,66 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "OfflineDetail"
+    },
+    "designerId": "1a6b2cef-192c-45af-9637-705ee5c611e1",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "phoneNumber",
+                "type": "string"
+            },
+            "designerId": "3797c0ad-0ca4-41e0-97dd-7a3dda289fc4"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sharedPay",
+                "type": "string"
+            },
+            "designerId": "e1b55ef5-91ed-4fa5-9d81-dbf470a356d4"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sharedDate",
+                "type": "string"
+            },
+            "designerId": "95906182-db3c-4b28-bf3f-0dbff1085cd3"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "consumerId",
+                "type": "string"
+            },
+            "designerId": "284a1145-5404-4ba3-a7f6-5ae996b76f6e"
+        }
+    ]
+}

@@ -1,0 +1,145 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Shared",
+        "idProperty": "oid"
+    },
+    "designerId": "fd2b8bee-19ae-47fd-9c08-36de6b8adda5",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "oid",
+                "type": "string"
+            },
+            "designerId": "832d5d0b-7344-49c1-8c80-ac5fb6f4a5dc"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "title",
+                "type": "string"
+            },
+            "designerId": "954aacce-0e90-475f-a049-b85b80be47b4"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "imgUrl",
+                "type": "string"
+            },
+            "designerId": "e02b2a55-b821-427b-b7de-e2666dcc63af"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "contentUrl",
+                "type": "string"
+            },
+            "designerId": "8b919e16-b926-4147-a30c-1e3250713eef"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "price",
+                "type": "float"
+            },
+            "designerId": "c8bbce8e-ff1a-4a8b-99ed-7351e1ea03c5"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sharedTime",
+                "type": "string"
+            },
+            "designerId": "8f40406b-1692-4b0f-a78c-1fc51bbd1dd7"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "status",
+                "type": "string"
+            },
+            "designerId": "fd1feb49-c651-4b17-89cd-08eafd43e9ec"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "articleId",
+                "type": "string"
+            },
+            "designerId": "3d484d37-e00d-45df-85b8-a8dbc0031179"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "photoUrl",
+                "type": "string"
+            },
+            "designerId": "04224460-da06-461b-b2b1-f09712f46803"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "reason",
+                "type": "string"
+            },
+            "designerId": "c6ce8dca-94b1-4a32-bd5b-89cd6765cf48"
+        }
+    ]
+}

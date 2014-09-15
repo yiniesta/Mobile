@@ -1,0 +1,153 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "User"
+    },
+    "designerId": "a958797c-f1b5-4cfe-9cae-f658844e216d",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id",
+                "type": "string"
+            },
+            "designerId": "492ff1f7-cb05-43f6-9062-caf6d0486cbb"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "username",
+                "type": "string"
+            },
+            "designerId": "54c68296-1349-4ae5-9639-9052180edbb3"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "password",
+                "type": "string"
+            },
+            "designerId": "4654b687-41dd-474f-81be-7681b74ea2d1"
+        },
+        {
+            "type": "Ext.data.proxy.LocalStorage",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "designerId": "acf5f676-f0e9-48d1-bc9c-e347edca11b4"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "consumerId",
+                "type": "string"
+            },
+            "designerId": "f143d84b-1e85-4cfb-80b3-6fd39aa67c78"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "gender",
+                "type": "string"
+            },
+            "designerId": "a2cdfb68-bcd4-40a2-959b-91b773a89ffc"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "provinceId",
+                "type": "string"
+            },
+            "designerId": "6923e31e-9ae5-41a8-bc71-0fc87f2f151e"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "cityId",
+                "type": "string"
+            },
+            "designerId": "db3fd82a-4926-4400-b038-622673a1df83"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "positionId",
+                "type": "string"
+            },
+            "designerId": "04c84f13-822d-4d3c-92eb-90bbc9536a0c"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "age",
+                "type": "int"
+            },
+            "designerId": "cb363afd-7b11-4559-93bf-9732a3a9db92"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "wechatName",
+                "type": "string"
+            },
+            "designerId": "a8bfbe3b-e4f0-4db6-9582-2d4a7fc3d02e"
+        }
+    ]
+}

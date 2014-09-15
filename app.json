@@ -1,0 +1,63 @@
+{
+   "name": "mobile",
+   "indexHtmlPath": "index.html",
+   "url": null,
+   "js": [
+      {
+         "path": "touch/sencha-touch.js",
+         "x-bootstrap": true
+      },
+      {
+         "path": "bootstrap.js",
+         "x-bootstrap": true
+      },
+      {
+         "path": "app.js",
+         "bundle": true,
+         "update": "delta"
+      },
+      {
+         "path": "app/override/plugin/PullRefresh.js"
+      },
+      {
+         "path": "app/override/picker/Picker.js"
+      }
+   ],
+   "css": [
+      {
+         "update": "delta",
+         "platform": [
+            "phone",
+            "tablet",
+            "desktop"
+         ],
+         "theme": "Default",
+         "path": "resources/css/sencha-touch.css",
+         "_architect_active_theme": true
+      },
+      {
+         "path": "mystyle/main.css"
+      }
+   ],
+   "appCache": {
+      "cache": [
+         "index.html"
+      ],
+      "network": [
+         "*"
+      ],
+      "fallback": []
+   },
+   "resources": [
+      "resources/images",
+      "resources/icons",
+      "resources/startup"
+   ],
+   "ignore": [
+      ".svn$"
+   ],
+   "archivePath": "archive",
+   "requires": [],
+   "id": "8f76ce2d-1d72-4ab8-a3e5-0053c789fc3c",
+   "classpath": "${app.dir}/app,${app.dir}/app/override/plugin/,${app.dir}/app/override/picker/"
+}

@@ -1,0 +1,45 @@
+{
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": null,
+        "designer|userClassName": "WithdrawalHistoryStore",
+        "model": "WithdrawalHistory",
+        "storeId": "WithdrawalHistoryStore"
+    },
+    "designerId": "05df2cad-d071-485a-ad3c-362ef987de13",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.JsonP",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "withdrawalHistoryJsonProxy",
+                "url": "/weixin/mobile/self/getWithdrawalHistoryList.htm"
+            },
+            "designerId": "472ef3c8-d603-4037-a0f6-5b417e4f37b2",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "withdrawalHistoryReader",
+                        "rootProperty": "data"
+                    },
+                    "designerId": "cd464ef1-dd61-461b-bb53-432b8ce500b1"
+                }
+            ]
+        }
+    ]
+}

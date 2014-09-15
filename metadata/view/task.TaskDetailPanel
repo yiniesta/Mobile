@@ -1,0 +1,40 @@
+{
+    "type": "Ext.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "taskDetailPanel",
+        "designer|userClassName": "task.TaskDetailPanel",
+        "layout": "fit",
+        "scrollable": true
+    },
+    "designerId": "c3c4aa78-48ea-43f7-93b1-2f0a13525f59",
+    "cn": [
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "centered": null,
+                "designer|displayName": "shareBtn",
+                "designer|uiInterfaceName": "action-round",
+                "docked": "bottom",
+                "height": "5%",
+                "icon": null,
+                "iconCls": null,
+                "itemId": "shareBtn",
+                "margin": "0 0 0 25%",
+                "text": "我要抢单",
+                "ui": "action-round",
+                "width": "50%"
+            },
+            "designerId": "4606d3a8-21c8-4d16-a06c-cd6bed413436"
+        }
+    ]
+}

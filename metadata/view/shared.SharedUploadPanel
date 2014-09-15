@@ -1,0 +1,209 @@
+{
+    "type": "Ext.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "sharedUploadPanel",
+        "designer|userClassName": "shared.SharedUploadPanel",
+        "layout": "fit",
+        "scrollable": true
+    },
+    "designerId": "8c00791a-caf4-435c-a746-90b17b9341ae",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "uploadPanel"
+            },
+            "designerId": "67cb21ab-07ae-4f22-8d81-50c0266d1de0",
+            "cn": [
+                {
+                    "type": "Ext.Img",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 200,
+                        "itemId": "preview",
+                        "margin": "3% 20%",
+                        "src": "resources/images/200x200.gif",
+                        "width": 200
+                    },
+                    "designerId": "ee34ea6d-d118-474e-aef7-89b9209c13f7"
+                },
+                {
+                    "type": "Ext.field.File",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "hidden": null,
+                        "itemId": "file",
+                        "label": null,
+                        "labelWidth": "0%",
+                        "margin": "3% 5%",
+                        "multiple": true,
+                        "name": "file"
+                    },
+                    "designerId": "2d7a4a17-8beb-41df-be2a-ae6f910c3865"
+                },
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "confirm",
+                        "hidden": null,
+                        "itemId": "uploadBtn",
+                        "margin": "3% 5%",
+                        "text": "上传图片",
+                        "ui": "confirm"
+                    },
+                    "designerId": "71f09fc8-dbea-479f-8b6d-523dc07408d1",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var form = button.up('formpanel');\r",
+                                    "var image = form.getComponent('preview');\r",
+                                    "var finishBtn = form.getComponent('finishBtn');\r",
+                                    "var progressIndicator = Ext.create(\"Ext.ProgressIndicator\",{loadingText:{\r",
+                                    "    upload: '正在上传: {percent}%',\r",
+                                    "    download: '{percent}%'\r",
+                                    "}});\r",
+                                    "var historyId = button.getParent().getParent().getItemId().oid;\r",
+                                    "\r",
+                                    "var request = {\r",
+                                    "    url: '/weixin/mobile/shared/upload.htm?historyId='+historyId,\r",
+                                    "    method: 'POST',\r",
+                                    "    xhr2: true,\r",
+                                    "    progress: progressIndicator,\r",
+                                    "    success: function(form, response) {\r",
+                                    "        if(response) {\r",
+                                    "            image.setSrc(response.filePath);\r",
+                                    "            finishBtn.setDisabled(false);\r",
+                                    "            button.setDisabled(false);\r",
+                                    "\r",
+                                    "            Ext.getStore('SharedStore').loadPage(1, {\"start\":\"0\"}, this);\r",
+                                    "        }\r",
+                                    "    },\r",
+                                    "    failure: function(form, response) {\r",
+                                    "        console.log(\"upload failure\");\r",
+                                    "        finishBtn.setDisabled(true);\r",
+                                    "        button.setDisabled(false);\r",
+                                    "    }\r",
+                                    "};\r",
+                                    "var input = Ext.Viewport.down(\"filefield\").getComponent().input;\r",
+                                    "var files = input.dom.files;\r",
+                                    "if (files.length) {\r",
+                                    "    if(files[0].size > 2097152) {\r",
+                                    "        Ext.Msg.alert(\"图片大小不能超过2MB\");\r",
+                                    "        return;\r",
+                                    "    }\r",
+                                    "} else {\r",
+                                    "    Ext.Msg.alert(\"请选择一张图片\");\r",
+                                    "    return;\r",
+                                    "}\r",
+                                    "\r",
+                                    "button.setDisabled(true);\r",
+                                    "form.submit(request);"
+                                ]
+                            },
+                            "designerId": "f0545661-431e-4099-a6c5-5b3b7535eb01"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "decline",
+                        "disabled": true,
+                        "hidden": null,
+                        "itemId": "finishBtn",
+                        "margin": "3% 5%",
+                        "text": "提交审核",
+                        "ui": "decline"
+                    },
+                    "designerId": "dcf8297d-3fe8-4d26-85e2-5062c17e4085"
+                },
+                {
+                    "type": "Ext.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "action",
+                        "disabled": false,
+                        "hidden": null,
+                        "itemId": "openUrl",
+                        "margin": "3% 5%",
+                        "text": "打开链接",
+                        "ui": "action"
+                    },
+                    "designerId": "44d1392b-26c6-41e0-bf95-6b3f7d977b8d"
+                }
+            ]
+        },
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initialize",
+                "implHandler": [
+                    "this.callParent();\r",
+                    "\r",
+                    "var photoUrl = this.getItemId().photoUrl;\r",
+                    "var status = this.getItemId().status;\r",
+                    "\r",
+                    "if(photoUrl){\r",
+                    "    var preview = this.getComponent('uploadPanel').getComponent('preview');\r",
+                    "    preview.setSrc(photoUrl);\r",
+                    "}\r",
+                    "if(status === '1'){\r",
+                    "    this.getComponent('uploadPanel').getComponent(\"finishBtn\").setDisabled(false);\r",
+                    "} else if(status === '3'){\r",
+                    "    this.getComponent('uploadPanel').getComponent(\"uploadBtn\").setDisabled(true);\r",
+                    "}"
+                ]
+            },
+            "designerId": "eeba9ba4-5a92-4a79-8e7f-95635176e20b"
+        }
+    ]
+}

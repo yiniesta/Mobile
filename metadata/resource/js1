@@ -1,0 +1,13 @@
+{
+    "type": "jsoverrideresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js1",
+        "url": "app/override/picker/Picker.js"
+    },
+    "designerId": "0f4cc72e-c382-4542-bc98-08b06ffcacf9"
+}

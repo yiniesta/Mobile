@@ -1,0 +1,94 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "OfflineController"
+    },
+    "designerId": "99ec659f-3cbd-4234-9179-f31edd9052c8",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainPanel",
+                "selector": "mainpanel"
+            },
+            "designerId": "d2c2d572-3aaf-4427-b414-8d6d33a6c8da"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "mainpanel #offline #offlineNavigateView #offlineList",
+                "designer|targetType": "Ext.dataview.List",
+                "fn": "onOfflineListItemTap",
+                "implHandler": [
+                    "var offlineNavigateView = this.getOfflineNavigateView();\r",
+                    "offlineNavigateView.push({\r",
+                    "    xtype: 'offlineDetailPanel',\r",
+                    "    title: '下线明细'\r",
+                    "});\r",
+                    "\r",
+                    "var offlineDetailPanel = this.getOfflineDetailPanel();\r",
+                    "var offlineDetailList = offlineDetailPanel.getComponent('offlineDetailList');\r",
+                    "var consumerId = record.data.consumerId;\r",
+                    "\r",
+                    "var store = Ext.create('Ext.data.Store',{\r",
+                    "    model: 'mobile.model.OfflineDetail',\r",
+                    "    proxy: {\r",
+                    "        type: 'jsonp',\r",
+                    "        url: '/weixin/mobile/offline/getOfflineDetail.htm?consumerId='+consumerId,\r",
+                    "        reader: {\r",
+                    "            type: 'json',\r",
+                    "            rootProperty: 'data'\r",
+                    "        }\r",
+                    "    }\r",
+                    "});\r",
+                    "store.load();\r",
+                    "offlineDetailList.setStore(store);\r",
+                    ""
+                ],
+                "name": "itemsingletap"
+            },
+            "designerId": "4bdcd417-5803-45f3-89cb-2fafc4ca92d0"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "offlineNavigateView",
+                "selector": "mainpanel #offlineNavigateView"
+            },
+            "designerId": "d396ca90-79f5-4bbb-abb8-e9f31bb538ba"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "offlineDetailPanel",
+                "selector": "#offlineDetailPanel"
+            },
+            "designerId": "e934307b-e100-45e5-bd21-fc883488aa93"
+        }
+    ]
+}

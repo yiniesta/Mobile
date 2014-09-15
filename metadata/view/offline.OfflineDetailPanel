@@ -1,0 +1,51 @@
+{
+    "type": "Ext.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "offlineDetailPanel",
+        "designer|userClassName": "offline.OfflineDetailPanel",
+        "id": "offlineDetailPanel",
+        "layout": "fit",
+        "scrollable": true
+    },
+    "designerId": "8f59bec3-8e76-49d0-b64e-2211425a5838",
+    "cn": [
+        {
+            "type": "Ext.dataview.List",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "offlineDetailList",
+                "loadingText": "正在加载..."
+            },
+            "designerId": "eae79571-4056-4118-a6cc-f7fb187e43c7",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "itemTpl",
+                        "implHandler": [
+                            "<div>\r",
+                            "    <span style=\"font-size:14px\">文章标题：<br>分享时间：{sharedDate}</span>\r",
+                            "    <span style=\"margin-left:10%;color:blue\">{sharedPay}元</span>\r",
+                            "</div>"
+                        ]
+                    },
+                    "designerId": "1f455360-68bf-47a2-bfaa-ee5c21380213"
+                }
+            ]
+        }
+    ]
+}

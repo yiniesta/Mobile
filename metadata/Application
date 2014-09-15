@@ -1,0 +1,121 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "UserController",
+            "TaskController",
+            "SelfController",
+            "SharedController",
+            "OfflineController"
+        ],
+        "models": [
+            "User",
+            "Task",
+            "Shared",
+            "Offline",
+            "OfflineDetail",
+            "SelfMenu",
+            "WithdrawalHistory"
+        ],
+        "name": "mobile",
+        "requires": [
+            "Ext.MessageBox"
+        ],
+        "stores": [
+            "ProvinceStore",
+            "CityStore",
+            "UserStore",
+            "TaskStore",
+            "SharedStore",
+            "SelfMenuStore",
+            "OfflineStore",
+            "WithdrawalHistoryStore"
+        ],
+        "views": [
+            "LoginForm",
+            "RegisterForm",
+            "MainPanel",
+            "self.MyPassword",
+            "task.TaskDetailPanel",
+            "self.MyInfo",
+            "shared.SharedUploadPanel",
+            "offline.OfflineDetailPanel",
+            "self.WithdrawalHistory",
+            "self.Withdrawal",
+            "ForgetFrom"
+        ]
+    },
+    "designerId": "application",
+    "cn": [
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "Ext.fly('appLoadingIndicator').destroy();\r",
+                    "\r",
+                    "//document.addEventListener(\"deviceready\", this.mainLaunch, false);\r",
+                    "\r",
+                    "var dataStore = Ext.getStore('UserStore');\r",
+                    "dataStore.load();\r",
+                    "var user = dataStore.getAt(0);\r",
+                    "if (user) {\r",
+                    "    var loginSuccess = function(resp, ops) {\r",
+                    "        var loginResult = resp.responseText;\r",
+                    "        if(loginResult === 'failure'){\r",
+                    "            Ext.create('mobile.view.LoginForm', {fullscreen: true});\r",
+                    "        } else {\r",
+                    "            Ext.create('mobile.view.MainPanel', {fullscreen: true});\r",
+                    "        }\r",
+                    "    };\r",
+                    "\r",
+                    "    var loginFailure = function(resp, ops) {\r",
+                    "        Ext.create('mobile.view.LoginForm', {fullscreen: true});\r",
+                    "    };\r",
+                    "\r",
+                    "    // 自动登录\r",
+                    "    Ext.Ajax.request({\r",
+                    "        url: \"/weixin/mobile/j_spring_security_check\",\r",
+                    "        params: {\"j_username\":user.data.username,\"j_password\":user.data.password},\r",
+                    "        success: loginSuccess,\r",
+                    "        failure: loginFailure\r",
+                    "    });\r",
+                    "\r",
+                    "} else {\r",
+                    "    Ext.create('mobile.view.LoginForm', {fullscreen: true});\r",
+                    "}"
+                ]
+            },
+            "designerId": "fde605e7-6431-48f7-a91e-5e92a215c83d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "mainLaunch",
+                "implHandler": [
+                    "// if (!device || !this.launched){\r",
+                    "//     return;\r",
+                    "// }\r",
+                    "alert('mainLaunch');\r",
+                    ""
+                ]
+            },
+            "designerId": "73d1f2ef-6872-4837-b896-4a694017ddce"
+        }
+    ]
+}

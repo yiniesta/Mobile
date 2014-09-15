@@ -1,0 +1,79 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Offline"
+    },
+    "designerId": "f6fff5e6-207a-42a1-ab2c-2b25b43873ac",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "phoneNumber",
+                "type": "string"
+            },
+            "designerId": "0be137fc-4707-4989-8a91-7efccaf9d280"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sharedPay",
+                "type": "string"
+            },
+            "designerId": "cdea1bfb-9a40-468d-a46b-87c6f33d74ab"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "time",
+                "type": "string"
+            },
+            "designerId": "aac0cf4e-9b1f-4c6b-9200-cd9a9aebbe72"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sharedDate",
+                "type": "string"
+            },
+            "designerId": "f71a38d6-17d8-4134-941a-10108cb9c024"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "consumerId",
+                "type": "string"
+            },
+            "designerId": "808ced33-ecdc-477b-a017-977557a26cad"
+        }
+    ]
+}

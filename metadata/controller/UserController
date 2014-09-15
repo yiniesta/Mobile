@@ -1,0 +1,934 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "UserController"
+    },
+    "designerId": "281224ab-8461-4b2e-9888-353e3182bb15",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "registerform #backBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "backToLogin",
+                "implHandler": [
+                    "var registerForm = this.getRegisterPanel();\r",
+                    "var loginForm = Ext.createByAlias('widget.loginform');\r",
+                    "Ext.Viewport.add(loginForm);\r",
+                    "loginForm.show();\r",
+                    "registerForm.destroy();\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "382eaa3d-63ef-45db-8f5d-639c2def90f4"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "forgetform #backBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "forgetBackBtnTap",
+                "implHandler": [
+                    "var forgetForm = this.getForgetPanel();\r",
+                    "var loginForm = Ext.createByAlias('widget.loginform');\r",
+                    "Ext.Viewport.add(loginForm);\r",
+                    "loginForm.show();\r",
+                    "forgetForm.destroy();\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "dcf06fd3-5085-4e09-8426-dc162195aafe"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "loginform #registerBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "showRegister",
+                "implHandler": [
+                    "var registerForm = Ext.createByAlias('widget.registerform');\r",
+                    "var loginForm = this.getLoginPanel();\r",
+                    "Ext.Viewport.add(registerForm);\r",
+                    "loginForm.destroy();\r",
+                    "registerForm.show();\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "25893cb2-9fca-4cb3-b457-2e12b9102711"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "loginform #loginButton",
+                "designer|targetType": "Ext.Button",
+                "fn": "login",
+                "implHandler": [
+                    "var form = button.up('formpanel'),\t\t\t// Login form\r",
+                    "    values = form.getValues(),\t\t\t\t// Form values\r",
+                    "    loginPanel = this.getLoginPanel(),\r",
+                    "    mainPanel = this.getMainPanel();\r",
+                    "\r",
+                    "if(values.j_username === '' || values.j_password === ''){\r",
+                    "    Ext.Msg.alert(\"提示\", '用户名和密码不能为空');\r",
+                    "    return;\r",
+                    "}\r",
+                    "\r",
+                    "button.setDisabled(true);\r",
+                    "\r",
+                    "// 连接登录接口成功\r",
+                    "var successCallback = function(resp, ops) {\r",
+                    "    var loginResult = resp.responseText;\r",
+                    "    if(loginResult === 'failure'){\r",
+                    "        button.setDisabled(false);\r",
+                    "        Ext.Msg.alert(\"登录失败\", '用户名或密码不正确');\r",
+                    "    } else {\r",
+                    "        //保存用户信息,下次打开直接到达主页\r",
+                    "        var user = Ext.JSON.decode(loginResult);\r",
+                    "        var store = Ext.create('mobile.model.User', {\r",
+                    "            username : values.j_username,\r",
+                    "            password : values.j_password,\r",
+                    "            id : user.id,\r",
+                    "            consumerId : user.consumerId,\r",
+                    "            wechatName : user.wechatName,\r",
+                    "            age : user.age,\r",
+                    "            gender : user.gender,\r",
+                    "            provinceId : user.provinceId,\r",
+                    "            cityId : user.cityId,\r",
+                    "            positionId : user.positionId\r",
+                    "        });\r",
+                    "        store.save();\r",
+                    "\r",
+                    "        if(typeof(mainPanel) === 'undefined'){\r",
+                    "            mainPanel = Ext.createByAlias('widget.mainpanel');\r",
+                    "        } else {\r",
+                    "            //加载任务列表\r",
+                    "            Ext.getStore('TaskStore').loadPage(1, {\"start\":\"0\"}, this);\r",
+                    "        }\r",
+                    "        loginPanel.destroy();\r",
+                    "        Ext.Viewport.add(mainPanel);\r",
+                    "        mainPanel.show();\r",
+                    "        mainPanel.setActiveItem(0);\r",
+                    "    }\r",
+                    "\r",
+                    "};\r",
+                    "\r",
+                    "// 网络错误\r",
+                    "var failureCallback = function(resp, ops) {\r",
+                    "    button.setDisabled(false);\r",
+                    "    Ext.Msg.alert(\"提示\", '网络连接超时');\r",
+                    "\r",
+                    "};\r",
+                    "\r",
+                    "\r",
+                    "// 登录请求\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: \"/weixin/mobile/j_spring_security_check\",\r",
+                    "    params: values,\r",
+                    "    success: successCallback,\r",
+                    "    failure: failureCallback\r",
+                    "});\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "613f385b-036d-4465-acb4-0d48731462d6"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "registerform #getVerifyCodeBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "getVerifyCode",
+                "implHandler": [
+                    "\r",
+                    "var form = button.up('formpanel'),\t\t\t// Register form\r",
+                    "    values = form.getValues(),\t\t\t\t// Form values\r",
+                    "    registerForm = this.getRegisterPanel(),\r",
+                    "    me = this;\r",
+                    "\r",
+                    "var reg = /^1(?:[38]\\d|4[57]|5[01256789])\\d{8}$/;\r",
+                    "if(!reg.test(values.telephone)){\r",
+                    "    Ext.Msg.alert(\"提示\", '请输入正确的手机号码');\r",
+                    "    return;\r",
+                    "}\r",
+                    "\r",
+                    "button.setDisabled(true);\r",
+                    "\r",
+                    "// 请求成功\r",
+                    "var successCallback = function(resp, ops) {\r",
+                    "    var registerResult = resp.responseText;\r",
+                    "    if(registerResult === 'success') {\r",
+                    "        var telephone = registerForm.getComponent('registerFieldSet').getComponent('telephone');\r",
+                    "        var getVerifyCodeBtn = registerForm.getComponent('getVerifyCodeBtn');\r",
+                    "        telephone.setHidden(true);\r",
+                    "        getVerifyCodeBtn.setHidden(true);\r",
+                    "\r",
+                    "        var verifycode = registerForm.getComponent('registerFieldSet').getComponent('verifycode');\r",
+                    "        var submitVerifyCodeBtn = registerForm.getComponent('submitVerifyCodeBtn');\r",
+                    "        var registerLabel = registerForm.getComponent('registerLabel');\r",
+                    "        verifycode.setHidden(false);\r",
+                    "        submitVerifyCodeBtn.setHidden(false);\r",
+                    "        registerLabel.setHidden(false);\r",
+                    "        registerLabel.setHtml('您的手机号码:'+values.telephone+'<br>将会收到一条包含验证码的短信.');\r",
+                    "\r",
+                    "\r",
+                    "        var tipLabel = registerForm.getComponent('bottomContainer').getComponent('tipLabel');\r",
+                    "        tipLabel.setHidden(false);\r",
+                    "        me.countDownMinute(tipLabel, \"register\");\r",
+                    "\r",
+                    "    } else if(registerResult === 'existed') {\r",
+                    "        button.setDisabled(false);\r",
+                    "        Ext.Msg.alert(\"提示\", '该手机号已注册');\r",
+                    "    } else {\r",
+                    "        button.setDisabled(false);\r",
+                    "        Ext.Msg.alert(\"提示\", '获取验证码失败，请重试');\r",
+                    "    }\r",
+                    "\r",
+                    "};\r",
+                    "\r",
+                    "// 网络错误\r",
+                    "var failureCallback = function(resp, ops) {\r",
+                    "    button.setDisabled(false);\r",
+                    "    Ext.Msg.alert(\"提示\", '网络连接超时');\r",
+                    "};\r",
+                    "\r",
+                    "// 请求验证码\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: \"/weixin/mobile/register/getVerifyCode.htm\",\r",
+                    "    params: values,\r",
+                    "    success: successCallback,\r",
+                    "    failure: failureCallback\r",
+                    "});\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "51e9db8a-f205-4d3a-a624-378ed18bf4f2"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "forgetform #getVerifyCodeBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "forgetGetVerifyCode",
+                "implHandler": [
+                    "var form = button.up('formpanel'),\r",
+                    "    values = form.getValues(),\r",
+                    "    forgetForm = this.getForgetPanel(),\r",
+                    "    me = this;\r",
+                    "\r",
+                    "var reg = /^1(?:[38]\\d|4[57]|5[01256789])\\d{8}$/;\r",
+                    "if(!reg.test(values.telephone)) {\r",
+                    "    Ext.Msg.alert(\"提示\", '请输入正确的手机号码');\r",
+                    "    return;\r",
+                    "} else if(values.wechatName === '') {\r",
+                    "    Ext.Msg.alert(\"提示\", '请输入微信号');\r",
+                    "    return;\r",
+                    "}\r",
+                    "\r",
+                    "button.setDisabled(true);\r",
+                    "\r",
+                    "// 请求成功\r",
+                    "var successCallback = function(resp, ops) {\r",
+                    "    var result = resp.responseText;\r",
+                    "    if(result === 'success') {\r",
+                    "        var firstLabel = forgetForm.getComponent('firstLabel');\r",
+                    "        var telephone = forgetForm.getComponent('forgetFieldSet').getComponent('telephone');\r",
+                    "        var wechatName = forgetForm.getComponent('forgetFieldSet').getComponent('wechatName');\r",
+                    "        var getVerifyCodeBtn = forgetForm.getComponent('getVerifyCodeBtn');\r",
+                    "        firstLabel.setHidden(true);\r",
+                    "        telephone.setHidden(true);\r",
+                    "        wechatName.setHidden(true);\r",
+                    "        getVerifyCodeBtn.setHidden(true);\r",
+                    "\r",
+                    "        var verifycode = forgetForm.getComponent('forgetFieldSet').getComponent('verifycode');\r",
+                    "        var submitVerifyCodeBtn = forgetForm.getComponent('submitVerifyCodeBtn');\r",
+                    "        var forgetLabel = forgetForm.getComponent('forgetLabel');\r",
+                    "        verifycode.setHidden(false);\r",
+                    "        submitVerifyCodeBtn.setHidden(false);\r",
+                    "        forgetLabel.setHidden(false);\r",
+                    "        forgetLabel.setHtml('您正在找回账号:'+values.telephone+'的密码.请输入手机收到的验证码：');\r",
+                    "\r",
+                    "        var tipLabel = forgetForm.getComponent('bottomContainer').getComponent('tipLabel');\r",
+                    "        tipLabel.setHidden(false);\r",
+                    "        me.countDownMinute(tipLabel, \"forget\");\r",
+                    "\r",
+                    "    } else if(result === 'notExist') {\r",
+                    "        button.setDisabled(false);\r",
+                    "        Ext.Msg.alert(\"提示\", '手机号与微信号不匹配');\r",
+                    "        \r",
+                    "    } else {\r",
+                    "        button.setDisabled(false);\r",
+                    "        Ext.Msg.alert(\"提示\", '获取验证码失败，请重试');\r",
+                    "    }\r",
+                    "\r",
+                    "};\r",
+                    "\r",
+                    "// 网络错误\r",
+                    "var failureCallback = function(resp, ops) {\r",
+                    "    button.setDisabled(false);\r",
+                    "    Ext.Msg.alert(\"提示\", '网络连接超时');\r",
+                    "};\r",
+                    "\r",
+                    "// 请求验证码\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: \"/weixin/mobile/forget/getVerifyCode.htm\",\r",
+                    "    params: values,\r",
+                    "    success: successCallback,\r",
+                    "    failure: failureCallback\r",
+                    "});\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "3d322737-5adb-4a01-911b-9c3cf152997f"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "registerform #submitVerifyCodeBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "validateVerifyCode",
+                "implHandler": [
+                    "\r",
+                    "var form = button.up('formpanel'),\r",
+                    "    values = form.getValues(),\r",
+                    "    registerForm = this.getRegisterPanel();\r",
+                    "\r",
+                    "if(values.verifycode === '' || values.verifycode.length !== 6){\r",
+                    "    Ext.Msg.alert(\"提示\", '请输入正确的验证码');\r",
+                    "    return;\r",
+                    "}\r",
+                    "\r",
+                    "button.setDisabled(true);\r",
+                    "\r",
+                    "// 验证请求成功\r",
+                    "var successCallback = function(resp, ops) {\r",
+                    "    var registerResult = resp.responseText;\r",
+                    "    if(registerResult === 'success') {\r",
+                    "        var verifycode = registerForm.getComponent('registerFieldSet').getComponent('verifycode');\r",
+                    "        var submitVerifyCodeBtn = registerForm.getComponent('submitVerifyCodeBtn');\r",
+                    "        var registerLabel = registerForm.getComponent('registerLabel');\r",
+                    "        var bottomContainer = registerForm.getComponent('bottomContainer');\r",
+                    "        verifycode.setHidden(true);\r",
+                    "        submitVerifyCodeBtn.setHidden(true);\r",
+                    "        registerLabel.setHidden(true);\r",
+                    "        bottomContainer.setHidden(true);\r",
+                    "\r",
+                    "        var wechatName = registerForm.getComponent('registerFieldSet').getComponent('wechatName');\r",
+                    "        var password = registerForm.getComponent('registerFieldSet').getComponent('password');\r",
+                    "        var confirmPass = registerForm.getComponent('registerFieldSet').getComponent('confirmPass');\r",
+                    "        var gender = registerForm.getComponent('registerFieldSet').getComponent('gender');\r",
+                    "        var age = registerForm.getComponent('registerFieldSet').getComponent('age');\r",
+                    "        var provinceSelect = registerForm.getComponent('registerFieldSet').getComponent('provinceSelect');\r",
+                    "        var citySelect = registerForm.getComponent('registerFieldSet').getComponent('citySelect');\r",
+                    "        var position = registerForm.getComponent('registerFieldSet').getComponent('position');\r",
+                    "        var registerBtn = registerForm.getComponent('registerBtn');\r",
+                    "        wechatName.setHidden(false);\r",
+                    "        password.setHidden(false);\r",
+                    "        confirmPass.setHidden(false);\r",
+                    "        gender.setHidden(false);\r",
+                    "        age.setHidden(false);\r",
+                    "        provinceSelect.setHidden(false);\r",
+                    "        citySelect.setHidden(false);\r",
+                    "        position.setHidden(false);\r",
+                    "        registerBtn.setHidden(false);\r",
+                    "\r",
+                    "    } else {\r",
+                    "        button.setDisabled(false);\r",
+                    "        Ext.Msg.alert(\"提示\", '请输入正确的验证码');\r",
+                    "    }\r",
+                    "\r",
+                    "};\r",
+                    "\r",
+                    "// 网络错误\r",
+                    "var failureCallback = function(resp, ops) {\r",
+                    "    button.setDisabled(false);\r",
+                    "    Ext.Msg.alert(\"提示\", '网络连接超时');\r",
+                    "};\r",
+                    "\r",
+                    "// 验证手机验证码\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: \"/weixin/mobile/register/validateVerifyCode.htm\",\r",
+                    "    params: values,\r",
+                    "    success: successCallback,\r",
+                    "    failure: failureCallback\r",
+                    "});\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "9e2b2862-ce0e-4758-a5dd-1ae0a3028462"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "forgetform #submitVerifyCodeBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "forgetValidateVerifyCode",
+                "implHandler": [
+                    "\r",
+                    "var form = button.up('formpanel'),\r",
+                    "    values = form.getValues(),\r",
+                    "    forgetForm = this.getForgetPanel();\r",
+                    "\r",
+                    "if(values.verifycode === '' || values.verifycode.length !== 6){\r",
+                    "    Ext.Msg.alert(\"提示\", '请输入正确的验证码');\r",
+                    "    return;\r",
+                    "}\r",
+                    "\r",
+                    "button.setDisabled(true);\r",
+                    "\r",
+                    "// 验证请求成功\r",
+                    "var successCallback = function(resp, ops) {\r",
+                    "    var result = resp.responseText;\r",
+                    "    if(result === 'success') {\r",
+                    "        var verifycode = forgetForm.getComponent('forgetFieldSet').getComponent('verifycode');\r",
+                    "        var submitVerifyCodeBtn = forgetForm.getComponent('submitVerifyCodeBtn');\r",
+                    "        var forgetLabel = forgetForm.getComponent('forgetLabel');\r",
+                    "        var bottomContainer = forgetForm.getComponent('bottomContainer');\r",
+                    "        verifycode.setHidden(true);\r",
+                    "        submitVerifyCodeBtn.setHidden(true);\r",
+                    "        forgetLabel.setHidden(true);\r",
+                    "        bottomContainer.setHidden(true);\r",
+                    "\r",
+                    "        var passLabel = forgetForm.getComponent('passLabel');\r",
+                    "        var password = forgetForm.getComponent('forgetFieldSet').getComponent('password');\r",
+                    "        var submitBtn = forgetForm.getComponent('submitBtn');\r",
+                    "        passLabel.setHidden(false);\r",
+                    "        password.setHidden(false);\r",
+                    "        submitBtn.setHidden(false);\r",
+                    "\r",
+                    "    } else {\r",
+                    "        button.setDisabled(false);\r",
+                    "        Ext.Msg.alert(\"提示\", '请输入正确的验证码');\r",
+                    "    }\r",
+                    "\r",
+                    "};\r",
+                    "\r",
+                    "// 网络错误\r",
+                    "var failureCallback = function(resp, ops) {\r",
+                    "    button.setDisabled(false);\r",
+                    "    Ext.Msg.alert(\"提示\", '网络连接超时');\r",
+                    "};\r",
+                    "\r",
+                    "// 验证手机验证码\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: \"/weixin/mobile/register/validateVerifyCode.htm\",\r",
+                    "    params: values,\r",
+                    "    success: successCallback,\r",
+                    "    failure: failureCallback\r",
+                    "});\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "f0dcf3f6-cbb4-41c6-bf44-915332e955cd"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "loginPanel",
+                "selector": "loginform"
+            },
+            "designerId": "4bc740f2-2c6d-4ed4-bee3-fcfc264e0658"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "registerPanel",
+                "selector": "registerform"
+            },
+            "designerId": "eab990e5-ac08-467b-b418-ea51b1e61376"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "forgetPanel",
+                "selector": "forgetform"
+            },
+            "designerId": "3567b305-d141-4eb9-8adb-5c0cb0129059"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainPanel",
+                "selector": "mainpanel"
+            },
+            "designerId": "e2317fea-d5d0-4260-b620-4fbf6218d4b8"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "registerform #bottomContainer #tipBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "getOneMoreCode",
+                "implHandler": [
+                    "var registerForm = this.getRegisterPanel();\r",
+                    "var telephone = registerForm.getComponent('registerFieldSet').getComponent('telephone');\r",
+                    "var phone = telephone.getValue();\r",
+                    "var me = this;\r",
+                    "\r",
+                    "// 请求成功\r",
+                    "var successCallback = function(resp, ops) {\r",
+                    "    var registerResult = resp.responseText;\r",
+                    "    if(registerResult === 'success') {\r",
+                    "        var tipBtn = registerForm.getComponent('bottomContainer').getComponent('tipBtn');\r",
+                    "        tipBtn.setHidden(true);\r",
+                    "        tipBtn.setText('');\r",
+                    "\r",
+                    "        var tipLabel = registerForm.getComponent('bottomContainer').getComponent('tipLabel');\r",
+                    "        tipLabel.setHtml('');\r",
+                    "        me.countDownMinute(tipLabel);\r",
+                    "\r",
+                    "    } else {\r",
+                    "         Ext.Msg.alert(\"提示\", '获取验证码失败，请重试');\r",
+                    "    }\r",
+                    "\r",
+                    "};\r",
+                    "\r",
+                    "// 网络错误\r",
+                    "var failureCallback = function(resp, ops) {\r",
+                    "    Ext.Msg.alert(\"提示\", '网络连接超时');\r",
+                    "};\r",
+                    "\r",
+                    "// 请求验证码\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: \"/weixin/mobile/register/getVerifyCode.htm\",\r",
+                    "    params: {\"telephone\": phone},\r",
+                    "    success: successCallback,\r",
+                    "    failure: failureCallback\r",
+                    "});"
+                ],
+                "name": "tap"
+            },
+            "designerId": "d77f4c7f-b0ee-4841-941b-8f543646ce62"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "forgetform #bottomContainer #tipBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "forgetGetOneMoreCOde",
+                "implHandler": [
+                    "var forgetForm = this.getForgetPanel();\r",
+                    "var telephone = forgetForm.getComponent('forgetFieldSet').getComponent('telephone');\r",
+                    "var wechat = forgetForm.getComponent('forgetFieldSet').getComponent('wechatName');\r",
+                    "var phone = telephone.getValue();\r",
+                    "var wechatName = wechat.getValue();\r",
+                    "var me = this;\r",
+                    "\r",
+                    "// 请求成功\r",
+                    "var successCallback = function(resp, ops) {\r",
+                    "    var registerResult = resp.responseText;\r",
+                    "    if(registerResult === 'success') {\r",
+                    "        var tipBtn = forgetForm.getComponent('bottomContainer').getComponent('tipBtn');\r",
+                    "        tipBtn.setHidden(true);\r",
+                    "        tipBtn.setText('');\r",
+                    "\r",
+                    "        var tipLabel = forgetForm.getComponent('bottomContainer').getComponent('tipLabel');\r",
+                    "        tipLabel.setHtml('');\r",
+                    "        me.countDownMinute(tipLabel);\r",
+                    "\r",
+                    "    } else {\r",
+                    "         Ext.Msg.alert(\"提示\", '获取验证码失败，请重试');\r",
+                    "    }\r",
+                    "\r",
+                    "};\r",
+                    "\r",
+                    "// 网络错误\r",
+                    "var failureCallback = function(resp, ops) {\r",
+                    "    Ext.Msg.alert(\"提示\", '网络连接超时');\r",
+                    "};\r",
+                    "\r",
+                    "// 请求验证码\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: \"/weixin/mobile/forget/getVerifyCode.htm\",\r",
+                    "    params: {\"telephone\": phone, \"wechatName\":wechatName},\r",
+                    "    success: successCallback,\r",
+                    "    failure: failureCallback\r",
+                    "});"
+                ],
+                "name": "tap"
+            },
+            "designerId": "b8bcc651-b897-4f97-87bb-bbda49d1cc46"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "registerform #registerBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "register",
+                "implHandler": [
+                    "var form = button.up('formpanel'),\t\t\t// Register form\r",
+                    "    values = form.getValues(),\t\t\t\t// Form values\r",
+                    "    registerForm = this.getRegisterPanel();\r",
+                    "\r",
+                    "if(values.wechatName === '') {\r",
+                    "    Ext.Msg.alert(\"提示\", '微信号不能为空');\r",
+                    "    return;\r",
+                    "} else if(values.password === '') {\r",
+                    "    Ext.Msg.alert(\"提示\", '密码不能为空');\r",
+                    "    return;\r",
+                    "} else if(values.password.length>16 || values.password.length<6) {\r",
+                    "    Ext.Msg.alert(\"提示\", '密码长度为6到16个字符，请确认');\r",
+                    "    return;\r",
+                    "} else if(values.confirmPass === '') {\r",
+                    "    Ext.Msg.alert(\"提示\", '确认密码不能为空');\r",
+                    "    return;\r",
+                    "} else if(values.password !== values.confirmPass) {\r",
+                    "    Ext.Msg.alert(\"提示\", '密码不一致');\r",
+                    "    return;\r",
+                    "}\r",
+                    "\r",
+                    "button.setDisabled(true);\r",
+                    "\r",
+                    "// 请求成功\r",
+                    "var successCallback = function(resp, ops) {\r",
+                    "    var registerResult = resp.responseText;\r",
+                    "    if(registerResult === 'success') {\r",
+                    "        Ext.Msg.alert(\"提示\", '恭喜您，注册成功');\r",
+                    "        registerForm.destroy();\r",
+                    "\r",
+                    "        var loginPanel = Ext.createByAlias('widget.loginform');\r",
+                    "        var username = loginPanel.getComponent('loginFieldSet').getComponent('username');\r",
+                    "        username.setValue(values.telephone);\r",
+                    "        Ext.Viewport.add(loginPanel);\r",
+                    "        loginPanel.show();\r",
+                    "\r",
+                    "    } else {\r",
+                    "        button.setDisabled(false);\r",
+                    "        Ext.Msg.alert(\"提示\", '注册失败，请重试');\r",
+                    "    }\r",
+                    "\r",
+                    "};\r",
+                    "\r",
+                    "// 网络错误\r",
+                    "var failureCallback = function(resp, ops) {\r",
+                    "    button.setDisabled(false);\r",
+                    "    Ext.Msg.alert(\"提示\", '网络连接超时');\r",
+                    "};\r",
+                    "\r",
+                    "// 请求完成注册\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: \"/weixin/mobile/register/finishRegister.htm\",\r",
+                    "    params: values,\r",
+                    "    success: successCallback,\r",
+                    "    failure: failureCallback\r",
+                    "});"
+                ],
+                "name": "tap"
+            },
+            "designerId": "5795fa90-c439-4867-93d4-d19ae6b20b4a"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "forgetform #submitBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "forgetSubmit",
+                "implHandler": [
+                    "var form = button.up('formpanel'),\t\t\t// Register form\r",
+                    "    values = form.getValues(),\t\t\t\t// Form values\r",
+                    "    forgetForm = this.getForgetPanel();\r",
+                    "\r",
+                    "if(values.password === '') {\r",
+                    "    Ext.Msg.alert(\"提示\", '密码不能为空');\r",
+                    "    return;\r",
+                    "} else if(values.password.length>16 || values.password.length<6) {\r",
+                    "    Ext.Msg.alert(\"提示\", '密码长度为6到16个字符，请确认');\r",
+                    "    return;\r",
+                    "}\r",
+                    "\r",
+                    "button.setDisabled(true);\r",
+                    "\r",
+                    "// 请求成功\r",
+                    "var successCallback = function(resp, ops) {\r",
+                    "    var registerResult = resp.responseText;\r",
+                    "    if(registerResult === 'success') {\r",
+                    "        Ext.Msg.alert(\"提示\", '密码设置成功');\r",
+                    "        forgetForm.destroy();\r",
+                    "\r",
+                    "        var loginPanel = Ext.createByAlias('widget.loginform');\r",
+                    "        var username = loginPanel.getComponent('loginFieldSet').getComponent('username');\r",
+                    "        username.setValue(values.telephone);\r",
+                    "        Ext.Viewport.add(loginPanel);\r",
+                    "        loginPanel.show();\r",
+                    "\r",
+                    "    } else {\r",
+                    "        button.setDisabled(false);\r",
+                    "        Ext.Msg.alert(\"提示\", '系统繁忙，请重试');\r",
+                    "    }\r",
+                    "\r",
+                    "};\r",
+                    "\r",
+                    "// 网络错误\r",
+                    "var failureCallback = function(resp, ops) {\r",
+                    "    button.setDisabled(false);\r",
+                    "    Ext.Msg.alert(\"提示\", '网络连接超时');\r",
+                    "};\r",
+                    "\r",
+                    "// 请求完成注册\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: \"/weixin/mobile/forget/forgetSubmit.htm\",\r",
+                    "    params: values,\r",
+                    "    success: successCallback,\r",
+                    "    failure: failureCallback\r",
+                    "});"
+                ],
+                "name": "tap"
+            },
+            "designerId": "b1bd1807-3b7e-4d87-8410-23acf74ffc00"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "verifycodeField",
+                "selector": "registerform #registerFieldSet #verifycode"
+            },
+            "designerId": "3846284b-3e8d-43be-ac90-ab39ec24230f"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "passwordField",
+                "selector": "registerform #registerFieldSet #password"
+            },
+            "designerId": "bd9b827d-3022-4742-aa94-f43f5c394448"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "passLabel",
+                "selector": "registerform #passLabel"
+            },
+            "designerId": "a1710b01-4154-4bb3-8571-54f1bb5f9322"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "registerLabel",
+                "selector": "registerform #registerLabel"
+            },
+            "designerId": "3409688e-06b2-44ab-b558-62cd6d847a7f"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "submitVerifyCodeBtn",
+                "selector": "registerform #submitVerifyCodeBtn"
+            },
+            "designerId": "4c24dc1b-a021-4e7f-afd2-40a16bceb625"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "registerBtn",
+                "selector": "registerform #registerBtn"
+            },
+            "designerId": "bbef8849-de70-4176-98f0-0f0e2ba98bec"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "target",
+                    "type"
+                ],
+                "fn": "countDownMinute",
+                "implHandler": [
+                    "var me = this;\r",
+                    "var now = new Date();\r",
+                    "var to = Ext.Date.add(now, Ext.Date.SECOND, 60);\r",
+                    "me.task = setInterval(function(){ me.timing(me, target, to, type); }, 1000);"
+                ]
+            },
+            "designerId": "c2bbf1ca-0faa-4577-957c-3a5f12563c5f"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "me",
+                    "target",
+                    "to",
+                    "type"
+                ],
+                "fn": "timing",
+                "implHandler": [
+                    "var targetForm;\r",
+                    "if(type === 'register'){\r",
+                    "   targetForm = this.getRegisterPanel();\r",
+                    "} else {\r",
+                    "   targetForm = this.getForgetPanel();\r",
+                    "}\r",
+                    "\r",
+                    "var now = new Date();\r",
+                    "var ms = to - now;\r",
+                    "var second = Math.floor(ms / 1000) % 60;\r",
+                    "if (second >= 0) {\r",
+                    "    target.setHtml(Ext.String.format('<font color=\"blue\">{0}</font>秒后重新发送', second));\r",
+                    "} else {\r",
+                    "    target.setHtml('没收到？');\r",
+                    "    var tipBtn = targetForm.getComponent('bottomContainer').getComponent('tipBtn');\r",
+                    "    tipBtn.setHidden(false);\r",
+                    "    tipBtn.setText('<font color=\"blue\">重新发送</font');\r",
+                    "    \r",
+                    "    clearInterval(me.task);\r",
+                    "}"
+                ]
+            },
+            "designerId": "683b1af9-5458-46b6-b27d-77dae3732f2d"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "loginform #forgetBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "onForgetBtnTap",
+                "implHandler": [
+                    "var forgetForm = Ext.createByAlias('widget.forgetform');\r",
+                    "var loginForm = this.getLoginPanel();\r",
+                    "Ext.Viewport.add(forgetForm);\r",
+                    "loginForm.destroy();\r",
+                    "forgetForm.show();"
+                ],
+                "name": "tap"
+            },
+            "designerId": "ade932e2-26fb-4c9b-b0e9-1ba7a1a20fa3"
+        }
+    ]
+}

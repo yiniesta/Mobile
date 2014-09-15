@@ -1,0 +1,99 @@
+{
+    "type": "Ext.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "withdrawal",
+        "designer|userClassName": "self.Withdrawal",
+        "height": "100%",
+        "scrollable": false
+    },
+    "designerId": "ded87096-22f6-4b18-8e61-6ebf832ca528",
+    "cn": [
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "labelContainer",
+                "layout": "hbox"
+            },
+            "designerId": "09bffc7f-55a0-4c85-a831-85ad2bcf2c97",
+            "cn": [
+                {
+                    "type": "Ext.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "docked": null,
+                        "html": "可提现余额：",
+                        "itemId": "withdrawalLabel",
+                        "margin": "3% 0% 3% 3%",
+                        "width": 109
+                    },
+                    "designerId": "0f9e08f7-9682-44e1-9c13-4a9ec9fdc582"
+                },
+                {
+                    "type": "Ext.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "docked": null,
+                        "height": 25,
+                        "html": null,
+                        "itemId": "balance",
+                        "margin": "3% 0%",
+                        "width": 70
+                    },
+                    "designerId": "2c18dd03-0549-45de-ad7f-d287867e706f"
+                }
+            ]
+        },
+        {
+            "type": "Ext.field.Number",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "claimAmount",
+                "label": "金额",
+                "labelWidth": "20%",
+                "margin": "2% 3%",
+                "name": "claimAmount",
+                "placeHolder": "请输入提现金额",
+                "width": null
+            },
+            "designerId": "49c12b06-64f9-41c4-9be1-3cd8d89ef1fc"
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|uiInterfaceName": "confirm-round",
+                "itemId": "claimBtn",
+                "margin": "5% 3%",
+                "text": "提现",
+                "ui": "confirm-round"
+            },
+            "designerId": "7ca70115-d5d8-438a-833a-de3d7bbbae8e"
+        }
+    ]
+}

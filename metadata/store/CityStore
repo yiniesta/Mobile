@@ -1,0 +1,83 @@
+{
+    "type": "directstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "[\r",
+            "    {\r",
+            "        id: '1',\r",
+            "        provinceId: '1',\r",
+            "        name: '北京市'\r",
+            "    },\r",
+            "    {\r",
+            "        id: '2',\r",
+            "        provinceId: '1',\r",
+            "        name: '其他'\r",
+            "    },\r",
+            "    {\r",
+            "        id: '3',\r",
+            "        provinceId: '2',\r",
+            "        name: '广州市'\r",
+            "    },\r",
+            "    {\r",
+            "        id: '4',\r",
+            "        provinceId: '2',\r",
+            "        name: '其他'\r",
+            "    },\r",
+            "    {\r",
+            "        id: '5',\r",
+            "        provinceId: '3',\r",
+            "        name: '长沙'\r",
+            "    }\r",
+            "]"
+        ],
+        "designer|userClassName": "CityStore",
+        "storeId": "CityStore"
+    },
+    "designerId": "85aeb493-09ed-43b4-a62c-af1b194a26bd",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "id",
+                "type": "string"
+            },
+            "designerId": "5bf00996-d496-430c-8de0-6d017098eaef"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "name",
+                "type": "string"
+            },
+            "designerId": "34ed4538-e613-4c8e-85cc-3d44867ad197"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "provinceId",
+                "type": "string"
+            },
+            "designerId": "62316cd1-f713-4eb4-bc36-9aa7fc522678"
+        }
+    ]
+}

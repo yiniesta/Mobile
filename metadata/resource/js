@@ -1,0 +1,13 @@
+{
+    "type": "jsoverrideresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js",
+        "url": "app/override/plugin/PullRefresh.js"
+    },
+    "designerId": "6102cd44-b065-4266-b56d-472202696799"
+}

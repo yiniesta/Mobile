@@ -1,0 +1,64 @@
+{
+    "type": "arraystore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "SharedStore",
+        "model": "Shared",
+        "pageSize": 10,
+        "storeId": "SharedStore"
+    },
+    "designerId": "049a0565-308c-4071-b13c-7fa33ddf5b21",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.JsonP",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "sharedJsonProxy",
+                "limitParam": "pageSize",
+                "url": "/weixin/mobile/getSharedList.htm"
+            },
+            "designerId": "6148e82e-73b5-43a4-955c-bc543487fd31",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "sharedJsonReader",
+                        "rootProperty": "data"
+                    },
+                    "designerId": "7f00da07-a0bf-456b-a575-bbbafa9b18e8"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "currentPage"
+                ],
+                "fn": "setCurrentPage",
+                "implHandler": [
+                    "this.currentPage = currentPage;"
+                ]
+            },
+            "designerId": "5e0f8359-ced8-4bed-b333-66ed27d651cf"
+        }
+    ]
+}

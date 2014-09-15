@@ -1,0 +1,149 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "TaskController"
+    },
+    "designerId": "8abea678-79c6-45a1-943d-aef6df476d2c",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainPanel",
+                "selector": "mainpanel"
+            },
+            "designerId": "229eb7c7-27b6-4044-a0a3-d4ce7abbc7df"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "taskNavigateView",
+                "selector": "mainpanel #taskNavigateView"
+            },
+            "designerId": "e1135876-7400-4008-a4c2-1805dab482ad"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "mainpanel #article #taskNavigateView #taskList",
+                "designer|targetType": "Ext.dataview.List",
+                "fn": "onTaskListSelect",
+                "implHandler": [
+                    "\r",
+                    "var taskNavigateView = this.getTaskNavigateView();\r",
+                    "\r",
+                    "// 连接请求接口成功\r",
+                    "var successCallback = function(resp, ops) {\r",
+                    "    var respHtml = resp.responseText;\r",
+                    "\r",
+                    "    // Navigate to details\r",
+                    "    taskNavigateView.push({\r",
+                    "        xtype: 'taskDetailPanel',\r",
+                    "        title: record.data.title,\r",
+                    "        itemId: record.data.oid,\r",
+                    "        html: respHtml\r",
+                    "    });\r",
+                    "};\r",
+                    "\r",
+                    "// 网络错误\r",
+                    "var failureCallback = function(resp, ops) {\r",
+                    "    Ext.Msg.alert(\"提示\", '网络连接超时');\r",
+                    "};\r",
+                    "\r",
+                    "\r",
+                    "// 请求网页内容\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: \"/weixin/mobile/getHtmlContent.htm\",\r",
+                    "    params: {\"url\": record.data.contentUrl},\r",
+                    "    success: successCallback,\r",
+                    "    failure: failureCallback\r",
+                    "});\r",
+                    ""
+                ],
+                "name": "itemsingletap"
+            },
+            "designerId": "f6751260-49c5-4f1b-ae72-92436941c759"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "taskDetailPanel",
+                "selector": "taskDetailPanel"
+            },
+            "designerId": "e53f8cf0-78a2-4bbe-b0ca-fbacb6a497d3"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "taskDetailPanel #shareBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "onSharedButtonTap",
+                "implHandler": [
+                    "button.setDisabled(true);\r",
+                    "\r",
+                    "var articleId = button.getParent().getItemId(),\r",
+                    "    mainPanel = this.getMainPanel(),\r",
+                    "    user = mobile.view.MyUtils.getUserInfo();\r",
+                    "\r",
+                    "var successCallback = function(resp, ops) {\r",
+                    "    var result = resp.responseText;\r",
+                    "    if(result === '0'){\r",
+                    "        Ext.Msg.alert(\"提示\", '您已完成过此任务');\r",
+                    "\r",
+                    "    } else if(result === '1'){\r",
+                    "        Ext.Msg.alert(\"提示\", '恭喜您，抢单成功！');\r",
+                    "        mobile.view.MyUtils.updateTaskCount();\r",
+                    "\r",
+                    "    } else if(result === '2'){\r",
+                    "        Ext.Msg.alert(\"提示\", '此任务次数已被抢完');\r",
+                    "    }\r",
+                    "};\r",
+                    "\r",
+                    "var failureCallback = function(resp, ops) {\r",
+                    "    button.setDisabled(false);\r",
+                    "    Ext.Msg.alert(\"提示\", '网络连接超时');\r",
+                    "};\r",
+                    "\r",
+                    "Ext.Ajax.request({\r",
+                    "    url: \"/weixin/mobile/article/shareArticle.htm\",\r",
+                    "    params: {\"articleId\": articleId, \"consumerId\":user.consumerId},\r",
+                    "    success: successCallback,\r",
+                    "    failure: failureCallback\r",
+                    "});\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "1bf3bfbb-5d07-4727-aecf-eff3641631e2"
+        }
+    ]
+}

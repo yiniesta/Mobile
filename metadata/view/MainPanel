@@ -1,0 +1,514 @@
+{
+    "type": "Ext.tab.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|animation": "scroll",
+        "designer|userAlias": "mainpanel",
+        "designer|userClassName": "MainPanel",
+        "id": "mainPanel"
+    },
+    "designerId": "825f1b35-6953-42ea-beef-cb272d432814",
+    "cn": [
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "iconCls": "list",
+                "itemId": "article",
+                "title": "任务大厅"
+            },
+            "designerId": "596b3776-a889-4d5d-9de1-deddd918a901",
+            "cn": [
+                {
+                    "type": "Ext.navigation.View",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|animation": "scroll",
+                        "defaultBackButtonText": "返回",
+                        "designer|displayName": "TaskListNavigation",
+                        "height": "100%",
+                        "itemId": "taskNavigateView"
+                    },
+                    "designerId": "687187c5-33dc-4710-86f4-854ffa5be521",
+                    "cn": [
+                        {
+                            "type": "Ext.dataview.List",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "dataview-basic"
+                                ],
+                                "designer|displayName": "taskList",
+                                "itemId": "taskList",
+                                "loadingText": "正在加载...",
+                                "store": "TaskStore",
+                                "title": "任务大厅"
+                            },
+                            "designerId": "5998d915-f785-49a9-8200-6253d309764a",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "itemTpl",
+                                        "implHandler": [
+                                            "<div class=\"img\" style=\"background-image: url('/mobile/resources/icons/{imgUrl}');\"></div>\r",
+                                            "<div class=\"content\">\r",
+                                            "    <div class=\"name\">{title}</div>\r",
+                                            "    <div class=\"affiliation\">\r",
+                                            "        <span>已完成数：{sharedCount}</span>\r",
+                                            "        <span style=\"margin-left:10px\">剩余可抢单数：{shareAvaliable}</span>\r",
+                                            "        <!--<br><span>类别：{type}</span>-->\r",
+                                            "    </div>\r",
+                                            "</div>"
+                                        ]
+                                    },
+                                    "designerId": "27f1c852-476d-4db7-ba06-090c02ee41df"
+                                },
+                                {
+                                    "type": "Ext.plugin.ListPaging",
+                                    "reference": {
+                                        "name": "plugins",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "autoPaging": true,
+                                        "designer|displayName": "taskListPaging",
+                                        "loadMoreText": "加载更多...",
+                                        "noMoreRecordsText": ""
+                                    },
+                                    "designerId": "9a481b67-2fe1-4e3a-9956-72e71508bacd"
+                                },
+                                {
+                                    "type": "Ext.plugin.PullRefresh",
+                                    "reference": {
+                                        "name": "plugins",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "taskListPullRefresh",
+                                        "lastUpdatedDateFormat": "Y-m-d H:i",
+                                        "lastUpdatedText": "上次刷新:",
+                                        "loadedText": "刷新完成",
+                                        "loadingText": "正在刷新...",
+                                        "pullText": "下拉刷新",
+                                        "releaseText": "释放立即刷新",
+                                        "scrollerAutoRefresh": true
+                                    },
+                                    "designerId": "71185580-3e06-47cb-92c1-50437a5c0b4f"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "badgeText": null,
+                "html": null,
+                "iconCls": "favorites",
+                "itemId": "shared",
+                "title": "我的任务"
+            },
+            "designerId": "a7e32833-3a64-425b-8d5e-ef91d87d4d46",
+            "cn": [
+                {
+                    "type": "Ext.navigation.View",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|animation": "scroll",
+                        "defaultBackButtonText": "返回",
+                        "designer|displayName": "SharedListNavigation",
+                        "height": "100%",
+                        "itemId": "sharedNavigateView"
+                    },
+                    "designerId": "71faa3d0-52e9-448d-abe9-f89681421f47",
+                    "cn": [
+                        {
+                            "type": "Ext.dataview.List",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "dataview-basic"
+                                ],
+                                "designer|displayName": "sharedList",
+                                "itemId": "sharedList",
+                                "loadingText": "正在加载...",
+                                "store": "SharedStore",
+                                "title": "我的任务"
+                            },
+                            "designerId": "f8bff9ea-0a75-4670-9dc2-f673b28b84b5",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "itemTpl",
+                                        "implHandler": [
+                                            "<div class=\"img\" style=\"background-image: url('/mobile/resources/icons/{imgUrl}');\"></div>\r",
+                                            "<div class=\"content\">\r",
+                                            "    <div class=\"name\">{title}</div>\r",
+                                            "    <tpl if=\"status == 0\">\r",
+                                            "        <div class=\"affiliation\">\r",
+                                            "            状态：<span>未上传图片</span>\r",
+                                            "        </div>\r",
+                                            "    </tpl>\r",
+                                            "    <tpl if=\"status == 1\">\r",
+                                            "        <div class=\"affiliation\">\r",
+                                            "            状态：<span>未提交</span>\r",
+                                            "        </div>\r",
+                                            "    </tpl>\r",
+                                            "    <tpl if=\"status == 2\">\r",
+                                            "        <div class=\"affiliation\">\r",
+                                            "                <span>状态：审核中</span>\r",
+                                            "        </div>\r",
+                                            "        <div class=\"affiliation\">完成时间：{sharedTime}</div>\r",
+                                            "    </tpl>\r",
+                                            "    <tpl if=\"status == 3\">\r",
+                                            "        <div class=\"affiliation\">\r",
+                                            "            <span>状态：审核通过</span>\r",
+                                            "            <span style=\"margin-left:10px\">获得奖励：{price}元</span>\r",
+                                            "        </div>\r",
+                                            "        <div class=\"affiliation\">完成时间：{sharedTime}</div>\r",
+                                            "    </tpl>\r",
+                                            "    <tpl if=\"status == 4\">\r",
+                                            "        <div class=\"affiliation\">\r",
+                                            "            <span>状态：审核未通过</span>\r",
+                                            "        </div>\r",
+                                            "        <div class=\"affiliation\">原因：{reason}</div>\r",
+                                            "    </tpl>\r",
+                                            "</div>"
+                                        ]
+                                    },
+                                    "designerId": "58af6d6d-08b6-47e7-9ed2-ac053d844919"
+                                },
+                                {
+                                    "type": "Ext.plugin.ListPaging",
+                                    "reference": {
+                                        "name": "plugins",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "autoPaging": true,
+                                        "designer|displayName": "sharedListPaging",
+                                        "loadMoreText": "加载更多...",
+                                        "noMoreRecordsText": ""
+                                    },
+                                    "designerId": "089320f2-933e-412c-b5a2-123d909a9969"
+                                },
+                                {
+                                    "type": "Ext.plugin.PullRefresh",
+                                    "reference": {
+                                        "name": "plugins",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "sharedListPullRefresh",
+                                        "lastUpdatedDateFormat": "Y-m-d H:i",
+                                        "lastUpdatedText": "上次刷新:",
+                                        "loadedText": "刷新完成",
+                                        "loadingText": "正在刷新...",
+                                        "pullText": "下拉刷新",
+                                        "releaseText": "释放立即刷新",
+                                        "scrollerAutoRefresh": true
+                                    },
+                                    "designerId": "3129e61b-18d0-45d8-b730-4e2ff6c11b72"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onSharedActivate",
+                        "implHandler": [
+                            "//每次点击“已分享”都重新获取最新的列表\r",
+                            "Ext.getStore('SharedStore').loadPage(1, {\"start\":\"0\"}, this);\r",
+                            "newActiveItem.getComponent('sharedNavigateView').reset();\r",
+                            ""
+                        ],
+                        "name": "activate"
+                    },
+                    "designerId": "acf6c853-f4a0-47ea-8ff0-40bb2e6523ae"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "iconCls": "team",
+                "itemId": "offline",
+                "title": "我的下线"
+            },
+            "designerId": "68111c51-e715-478b-ba5a-c94525d8ae6e",
+            "cn": [
+                {
+                    "type": "Ext.navigation.View",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|animation": "scroll",
+                        "defaultBackButtonText": "返回",
+                        "designer|displayName": "offlineListNavigation",
+                        "height": "100%",
+                        "itemId": "offlineNavigateView"
+                    },
+                    "designerId": "3d2e209d-9418-4c31-bfba-37b48aa84b6c",
+                    "cn": [
+                        {
+                            "type": "Ext.dataview.List",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "dataview-basic"
+                                ],
+                                "designer|displayName": "",
+                                "grouped": true,
+                                "itemId": "offlineList",
+                                "loadingText": "正在加载...",
+                                "onItemDisclosure": null,
+                                "scrollToTopOnRefresh": false,
+                                "store": "OfflineStore",
+                                "title": "我的下线"
+                            },
+                            "designerId": "506f407e-dc47-472a-88d3-bac4815d4fa6",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "itemTpl",
+                                        "implHandler": [
+                                            "<div>\r",
+                                            "    <img src=\"/mobile/resources/images/offline/offline.png\" style=\"vertical-align:middle\"/>\r",
+                                            "    <span style=\"margin-left:5%;\">{phoneNumber}</span>\r",
+                                            "    <span style=\"margin-left:30%;color:blue\">{sharedPay}元</span>\r",
+                                            "</div>"
+                                        ]
+                                    },
+                                    "designerId": "6c33c4d6-d65f-4081-a4d1-af00735bdf09"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onOfflineActivate",
+                        "implHandler": [
+                            "var offlineStore = Ext.getStore('OfflineStore');\r",
+                            "var count = offlineStore.getAllCount();\r",
+                            "if(count === 0) {\r",
+                            "    offlineStore.load();\r",
+                            "}"
+                        ],
+                        "name": "activate"
+                    },
+                    "designerId": "8296b7a9-d776-44a1-8fe6-e463afd4f4e0"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "iconCls": "user",
+                "itemId": "self",
+                "title": "我"
+            },
+            "designerId": "3cd5a972-01c7-479e-b041-d9dccf616376",
+            "cn": [
+                {
+                    "type": "Ext.navigation.View",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "container|animation": "flip",
+                        "defaultBackButtonText": "返回",
+                        "designer|displayName": "SelfPanelNavigation",
+                        "height": "100%",
+                        "itemId": "selfNavigateView",
+                        "scrollable": null
+                    },
+                    "designerId": "37043588-2bfe-4012-9125-9a25ff1ec2f8",
+                    "cn": [
+                        {
+                            "type": "Ext.dataview.List",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "centered": null,
+                                "cls": [
+                                    "list2"
+                                ],
+                                "designer|displayName": "selfMenuList",
+                                "designer|uiInterfaceName": "round",
+                                "itemCls": "list2_item",
+                                "itemId": "selfMenuList",
+                                "loadingText": null,
+                                "margin": null,
+                                "store": "SelfMenuStore",
+                                "title": "我",
+                                "ui": "round"
+                            },
+                            "designerId": "0f247bf6-5ef8-4321-b5c7-b88714591046",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "itemTpl",
+                                        "implHandler": [
+                                            "<tpl if=\"needsIcon\">\r",
+                                            "    <img width=\"26\" height=\"26\" src=\"resources/images/self/{icon}.png\" align=\"absmiddle\"  />\r",
+                                            "</tpl>{name}"
+                                        ]
+                                    },
+                                    "designerId": "e58441f6-2b8d-4478-96ad-0ba43f382475"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onSelfActivate",
+                        "implHandler": [
+                            "var selfMenuStore = Ext.getStore('SelfMenuStore');\r",
+                            "var count = selfMenuStore.getAllCount();\r",
+                            "if(count === 0) {\r",
+                            "    selfMenuStore.load();\r",
+                            "}"
+                        ],
+                        "name": "activate"
+                    },
+                    "designerId": "0359ad72-6bcd-4d70-bc31-eb5db72d95ef"
+                }
+            ]
+        },
+        {
+            "type": "Ext.tab.Bar",
+            "reference": {
+                "name": "tabBar",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "bottom",
+                "itemId": "mainTabBar"
+            },
+            "designerId": "776c22a0-7da7-4220-b5e5-ce844336dee0"
+        },
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initialize",
+                "implHandler": [
+                    "this.callParent();\r",
+                    "\r",
+                    "//加载任务列表\r",
+                    "Ext.getStore('TaskStore').loadPage(1, {\"start\":\"0\"}, this);\r",
+                    "//获取用户未完成任务数\r",
+                    "mobile.view.MyUtils.updateTaskCount();"
+                ]
+            },
+            "designerId": "1f3d8908-032a-4f85-a9e9-a30ba55b0156"
+        }
+    ]
+}

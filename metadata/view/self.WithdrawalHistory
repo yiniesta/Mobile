@@ -1,0 +1,61 @@
+{
+    "type": "Ext.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "withdrawalhistory",
+        "designer|userClassName": "self.WithdrawalHistory",
+        "layout": "fit",
+        "scrollable": true
+    },
+    "designerId": "41906cef-33b7-446e-a890-5646e1f44c83",
+    "cn": [
+        {
+            "type": "Ext.dataview.List",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "disableSelection": true,
+                "itemId": "withdrawalHistoryList",
+                "loadingText": "正在加载...",
+                "store": "WithdrawalHistoryStore"
+            },
+            "designerId": "30af08d7-97da-4f36-b863-77031facbd2a",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "itemTpl",
+                        "implHandler": [
+                            "<div>\r",
+                            "    时间：{createDate}\r",
+                            "    <br/>\r",
+                            "    提现金额：{amount}元\r",
+                            "    <span style=\"margin-left:5px\">\r",
+                            "        状态：<tpl if=\"status==0\">\r",
+                            "            <font color=\"red\">未到账</font>\r",
+                            "        </tpl>\r",
+                            "        <tpl if=\"status==10\">\r",
+                            "            <font color=\"blue\">已到账</font>\r",
+                            "        </tpl>\r",
+                            "    </span>\r",
+                            "</div>"
+                        ]
+                    },
+                    "designerId": "3f6fc412-d726-428c-81dd-c27305f0db52"
+                }
+            ]
+        }
+    ]
+}
